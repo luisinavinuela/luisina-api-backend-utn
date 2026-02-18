@@ -1,0 +1,137 @@
+{
+  "info": {
+    "name": "backend-utn",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Users",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "This request retrieves a list of users from the JSONPlaceholder API.",
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/users",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "users"
+          ],
+          "query": [],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "GetProductsWithFilters",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTk2MjczNTk4MTNlOGNjM2YzMzBkYWUiLCJ1c2VybmFtZSI6Imx1aXNpLmFkbWluIiwiZW1haWwiOiJ0ZXN0X2ZpbmFsQGdtYWlsLmNvbSIsImlhdCI6MTc3MTQ0ODE4MSwiZXhwIjoxNzcxNDUxNzgxfQ.-9RszeGRklMfCWrEafOzAjItaufUxFCuglAqOnbSaD0",
+            "type": "string"
+          }
+        },
+        "description": "",
+        "url": {
+          "raw": "http://localhost:50000/products?category=Electrónica&maxPrice=300",
+          "protocol": "http",
+          "host": [
+            "localhost:50000"
+          ],
+          "path": [
+            "products"
+          ],
+          "query": [
+            {
+              "key": "category",
+              "value": "Electrónica"
+            },
+            {
+              "key": "maxPrice",
+              "value": "300"
+            }
+          ],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "http://localhost:50000/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost:50000"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"test_final@gmail.com\",\n  \"password\": \"1234lalala\"\n\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "http://localhost:50000/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost:50000"
+          ],
+          "path": [
+            "auth",
+            "register"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"luisi.admin\",\n  \"email\": \"test_final@gmail.com\",\n  \"password\": \"1234lalala\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "variable": []
+}
