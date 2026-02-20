@@ -31,3 +31,4 @@ curl -X PATCH http://localhost:50000/products/695d9fa29f59ec384ab62f3e -H "Conte
 curl -X DELETE http://localhost:50000/products/695d9fa29f59ec384ab62f3e
 
 ```
+
