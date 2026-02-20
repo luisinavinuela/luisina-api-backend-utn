@@ -18,12 +18,10 @@ const register = async (req: Request, res: Response) => {
 
     const { email, password, username } = body
 
-    // implementar validaciones de input con ZOD
     if (!email || !password || !username) {
       return res.status(400).json({ success: false, error: "data invalida, revisa los datos compartidos" })
     }
 
-    // gabi3@gmail.com
     if (!email.includes("@") || !email.endsWith(".com")) {
       return res.status(400).json({ success: false, error: "el correo electronico debería ser un email valido" })
     }
@@ -76,15 +74,11 @@ const login = async (req: Request, res: Response) => {
       return res.status(401).json({ success: false, error: "desautorizado" })
     }
 
-    // const validatePassword = await bcryptjs.compare(password, foundUser.password)
     const validatePassword = await bcryptjs.compare(password, foundUser.password)
 
     if (!validatePassword) {
       return res.status(401).json({ succes: false, error: "desautorizado" })
     }
-
-    // generar un token (cupón especial)
-    // Un token es una llave digital o un fragmento de información que sirve para autenticar y autorizar a un usuario en sistemas digitales
 
     const payload: IPayload = { _id: foundUser._id, username: foundUser.username, email: foundUser.email }
 
