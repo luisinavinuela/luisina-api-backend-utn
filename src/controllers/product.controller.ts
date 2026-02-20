@@ -35,8 +35,6 @@ const createProduct = async (req: Request, res: Response) => {
     const body = req.body
     const { name, price, stock, category, description } = body
 
-    // zod / joi / yup validaciones
-
     const validate = productValidate.safeParse(body)
 
     if (!validate.success) {
