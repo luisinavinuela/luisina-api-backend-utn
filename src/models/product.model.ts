@@ -10,6 +10,6 @@ const ProductSchema = new mongoose.Schema({
   versionKey: false
 })
 
-const Product = mongoose.model("Product", ProductSchema)
+const Product = mongoose.model("Product", ProductSchema, "products")
 
 export { Product }
