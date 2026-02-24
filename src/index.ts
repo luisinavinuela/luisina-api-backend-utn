@@ -11,7 +11,6 @@ dotenv.config()
 
 const serverHttp = express()
 
-
 declare global {
   namespace Express {
     interface Request {
@@ -20,26 +19,21 @@ declare global {
   }
 }
 
-// middleware
 serverHttp.use(cors())
 serverHttp.use(express.json())
-
-// http://localhost:50000/products
 
 serverHttp.use("/products", authMiddleware, productRouter)
 serverHttp.use("/auth", authRouter)
 
-// error 404
 serverHttp.use((req, res) => {
   res.status(404).json({ success: false, error: "el recurso no se encuentra" })
 })
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 5000
 
-// 0 - 65656
 serverHttp.listen(PORT, () => {
   try {
-    console.log(`✅ Servidor http en escucha en el puerto http://127.0.0.1:${PORT}`)
+    console.log(`✅ Servidor en puerto ${PORT}`)
     connectDb()
   } catch (error) {
     const err = error as Error
