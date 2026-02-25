@@ -76,7 +76,6 @@ const updateProduct = async (req: Request, res: Response) => {
 
 const deleteProduct = async (req: Request, res: Response) => {
 
-  // incorporar una validación de input
   const id = req.params.id as string
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
