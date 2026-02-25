@@ -31,13 +31,14 @@ serverHttp.use((req, res) => {
 
 const PORT = process.env.PORT || 5000
 
-serverHttp.listen(PORT, () => {
-  try {
-    console.log(`✅ Servidor en puerto ${PORT}`)
-    connectDb()
-  } catch (error) {
-    const err = error as Error
-    console.log(err.message)
-    process.exit(1)
+connectDb().then(() => {
+  if (process.env.NODE_ENV !== 'test') {
+    serverHttp.listen(PORT, () => {
+      console.log(`✅ Servidor en puerto ${PORT}`)
+    })
   }
+}).catch(err => {
+  console.log("Error de conexión:", err.message)
 })
+
+export default serverHttp
