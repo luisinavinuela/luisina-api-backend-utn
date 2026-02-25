@@ -22,23 +22,22 @@ declare global {
 serverHttp.use(cors())
 serverHttp.use(express.json())
 
+// 🔑 middleware para asegurar DB conectada
+serverHttp.use(async (_req, _res, next) => {
+  try {
+    await connectDb()
+    next()
+  } catch (error) {
+    console.error("DB connection error:", error)
+    next(error)
+  }
+})
+
 serverHttp.use("/products", authMiddleware, productRouter)
 serverHttp.use("/auth", authRouter)
 
-serverHttp.use((req, res) => {
+serverHttp.use((_req, res) => {
   res.status(404).json({ success: false, error: "el recurso no se encuentra" })
-})
-
-const PORT = process.env.PORT || 5000
-
-connectDb().then(() => {
-  if (process.env.NODE_ENV !== 'test') {
-    serverHttp.listen(PORT, () => {
-      console.log(`✅ Servidor en puerto ${PORT}`)
-    })
-  }
-}).catch(err => {
-  console.log("Error de conexión:", err.message)
 })
 
 export default serverHttp

@@ -1,20 +1,23 @@
-import { connect } from "mongoose";
+import mongoose from "mongoose"
+
+let isConnected = false
 
 const connectDb = async () => {
-  try {
-    const uri = process.env.URI_DB;
+  if (isConnected) return
 
-    if (!uri) {
-      console.log("❌ Error: URI_DB no definida en las variables de entorno");
-      return;
-    }
-
-    await connect(uri);
-    console.log("✅ Conectado con éxito a Mongodb");
-  } catch (error) {
-    const err = error as Error;
-    console.log("❌ No se pudo conectar con la base de datos:", err.message);
+  const uri = process.env.URI_DB
+  if (!uri) {
+    throw new Error("URI_DB no definida en las variables de entorno")
   }
-};
 
-export { connectDb };
+  try {
+    await mongoose.connect(uri)
+    isConnected = true
+    console.log("✅ Conectado con éxito a MongoDB")
+  } catch (error) {
+    console.error("❌ Error al conectar MongoDB:", error)
+    throw error
+  }
+}
+
+export { connectDb }
