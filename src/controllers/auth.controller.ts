@@ -72,7 +72,7 @@ const login = async (req: Request, res: Response) => {
     }
 
 const payload: IPayload = { 
-        _id: (foundUser._id as unknown) as string, 
+        _id: String(foundUser._id) as any, 
         username: foundUser.username, 
         email: foundUser.email 
     }
