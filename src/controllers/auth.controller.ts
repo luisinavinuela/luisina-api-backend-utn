@@ -72,12 +72,11 @@ const login = async (req: Request, res: Response) => {
     }
 
 const payload: IPayload = { 
-        _id: foundUser._id as any, 
+        _id: String(foundUser._id), 
         username: foundUser.username, 
         email: foundUser.email 
     }
     
-
     const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "1h" })
 
     res.json({ success: true, data: token })
